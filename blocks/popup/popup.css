@@ -4,9 +4,9 @@
 @import url(./__description/popup__description.css);
 @import url(./__submit/popup__submit.css);
 @import url(./__close/popup__close.css);
+@import url(./_type/popup_type_closed.css);
 
 .popup {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
