@@ -1,11 +1,11 @@
 let popup = document.querySelector('.popup');
-let edit = document.querySelector('.profile__edit-button');
-let popup_button = document.querySelector('.popup__close');
+const edit = document.querySelector('.profile__edit-button');
+const popup_button = document.querySelector('.popup__close');
 let author = document.querySelector('.profile__title');
 let desc = document.querySelector('.profile__subtitle');
 let popup_author = document.querySelector('.popup__author');
 let popup_desc = document.querySelector('.popup__description');
-let form = document.querySelector('.popup__container');
+const form = document.querySelector('.popup__container');
 
 function popup_open() {
   popup.classList.remove('popup_type_closed');
