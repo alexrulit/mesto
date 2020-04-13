@@ -1,0 +1,20 @@
+.popup__submit {
+  margin: 48px 36px 36px;
+  height: 50px;
+  background-color: black;
+  border-radius: 2px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+.popup__submit:hover {
+  background-color: rgba(0, 0, 0, .8);
+  transition: background-color .2s ease-in;
+}

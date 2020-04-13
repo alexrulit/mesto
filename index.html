@@ -10,8 +10,80 @@
 <body>
   <div class="page">
     <header class="header">
-      <img class="logo" src="" alt="Место">
+      <img class="header__logo" src="./images/logo.png" alt="Место">
     </header>
+    <main class="main">
+      <section class="profile">
+        <img class="profile__avatar" src="./images/zakivgusto.jpg" alt="Аватар">
+        <div class="profile__info">
+          <div class="profile__author">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+          <button class="profile__edit-button"></button>
+        </div>
+        <button class="profile__add-button"></button>
+      </section>
+      <section class="elements">
+        <ul class="elements__list">
+          <li class="elements__item">
+            <img class="elements__image" src="./images/voy-zan-R44UWCU7pwg-unsplash.jpg" alt="Карачаево">
+            <div class="elements__description">
+              <p class="elements__text">Карачаево</p>
+              <button class="elements__like-button"></button>
+            </div>
+          </li>
+          <li class="elements__item">
+            <img class="elements__image" src="./images/brandon-leclaire-qkVrnY0Q2Kg-unsplash.jpg" alt="Домбай">
+            <div class="elements__description">
+              <p class="elements__text">Домбай</p>
+              <button class="elements__like-button"></button>
+            </div>
+          </li>
+          <li class="elements__item">
+            <img class="elements__image" src="./images/danny-giebe-VOG9q8Kz4XA-unsplash.jpg" alt="Эльбрус">
+            <div class="elements__description">
+              <p class="elements__text">Эльбрус</p>
+              <button class="elements__like-button"></button>
+            </div>
+          </li>
+          <li class="elements__item">
+            <img class="elements__image" src="./images/voy-zan-R44UWCU7pwg-unsplash.jpg" alt="Карачаево">
+            <div class="elements__description">
+              <p class="elements__text">Карачаево</p>
+              <button class="elements__like-button"></button>
+            </div>
+          </li>
+          <li class="elements__item">
+            <img class="elements__image" src="./images/brandon-leclaire-qkVrnY0Q2Kg-unsplash.jpg" alt="Домбай">
+            <div class="elements__description">
+              <p class="elements__text">Домбай</p>
+              <button class="elements__like-button"></button>
+            </div>
+          </li>
+          <li class="elements__item">
+            <img class="elements__image" src="./images/danny-giebe-VOG9q8Kz4XA-unsplash.jpg" alt="Эльбрус">
+            <div class="elements__description">
+              <p class="elements__text">Эльбрус</p>
+              <button class="elements__like-button"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup popup_type_closed">
+      <form action="#" class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input type="text" class="popup__author">
+        <input type="text" class="popup__description">
+        <input type="submit" class="popup__submit" value="Сохранить">
+        <button class="popup__close"></button>
+      </form>
+    </div>
   </div>
+<script src="./script/popup.js"></script>
 </body>
 </html>
