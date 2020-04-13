@@ -1,0 +1,9 @@
+@import url(./__list/elements__list.css);
+@import url(./__image/elements__image.css);
+@import url(./__description/elements__description.css);
+@import url(./__text/elements__text.css);
+@import url(./__like-button/elements__like-button.css);
+
+.elements {
+  margin: 50px 0 0;
+}
