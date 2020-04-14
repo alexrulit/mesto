@@ -7,8 +7,14 @@
   border-bottom: 1px solid #545454;
 }
 
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 882px) {
   .header {
-    margin: 0 19px 0;
+    max-width: 582px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .header {
+    max-width: 282px;
   }
 }

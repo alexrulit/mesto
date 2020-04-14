@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./vendor/normalize.css">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 <body>
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo.png" alt="Место">
+      <img class="header__logo" src="./images/logo.svg" alt="Место">
     </header>
     <main class="main">
       <section class="profile">
@@ -20,52 +19,52 @@
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
-          <button class="profile__edit-button"></button>
+          <button type="button" class="profile__edit-button"></button>
         </div>
-        <button class="profile__add-button"></button>
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
         <ul class="elements__list">
           <li class="elements__item">
-            <img class="elements__image" src="./images/voy-zan-R44UWCU7pwg-unsplash.jpg" alt="Карачаево">
+            <img class="elements__image" src="./images/voy-zan-R44UWCU7pwg-unsplash.jpg" alt="Карачаевск">
             <div class="elements__description">
-              <p class="elements__text">Карачаево</p>
-              <button class="elements__like-button"></button>
+              <p class="elements__text">Карачаевск</p>
+              <button type="button" class="elements__like-button"></button>
+            </div>
+          </li>
+          <li class="elements__item">
+            <img class="elements__image" src="./images/brandon-leclaire-qkVrnY0Q2Kg-unsplash.jpg" alt="Гора Эльбрус">
+            <div class="elements__description">
+              <p class="elements__text">Гора Эльбрус</p>
+              <button type="button" class="elements__like-button"></button>
+            </div>
+          </li>
+          <li class="elements__item">
+            <img class="elements__image" src="./images/danny-giebe-VOG9q8Kz4XA-unsplash.jpg" alt="Домбай">
+            <div class="elements__description">
+              <p class="elements__text">Домбай</p>
+              <button type="button" class="elements__like-button"></button>
+            </div>
+          </li>
+          <li class="elements__item">
+            <img class="elements__image" src="./images/voy-zan-R44UWCU7pwg-unsplash.jpg" alt="Гора Эльбрус">
+            <div class="elements__description">
+              <p class="elements__text">Гора Эльбрус</p>
+              <button type="button" class="elements__like-button"></button>
             </div>
           </li>
           <li class="elements__item">
             <img class="elements__image" src="./images/brandon-leclaire-qkVrnY0Q2Kg-unsplash.jpg" alt="Домбай">
             <div class="elements__description">
               <p class="elements__text">Домбай</p>
-              <button class="elements__like-button"></button>
+              <button type="button" class="elements__like-button"></button>
             </div>
           </li>
           <li class="elements__item">
-            <img class="elements__image" src="./images/danny-giebe-VOG9q8Kz4XA-unsplash.jpg" alt="Эльбрус">
+            <img class="elements__image" src="./images/danny-giebe-VOG9q8Kz4XA-unsplash.jpg" alt="Карачаево-Ч...">
             <div class="elements__description">
-              <p class="elements__text">Эльбрус</p>
-              <button class="elements__like-button"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img class="elements__image" src="./images/voy-zan-R44UWCU7pwg-unsplash.jpg" alt="Карачаево">
-            <div class="elements__description">
-              <p class="elements__text">Карачаево</p>
-              <button class="elements__like-button"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img class="elements__image" src="./images/brandon-leclaire-qkVrnY0Q2Kg-unsplash.jpg" alt="Домбай">
-            <div class="elements__description">
-              <p class="elements__text">Домбай</p>
-              <button class="elements__like-button"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img class="elements__image" src="./images/danny-giebe-VOG9q8Kz4XA-unsplash.jpg" alt="Эльбрус">
-            <div class="elements__description">
-              <p class="elements__text">Эльбрус</p>
-              <button class="elements__like-button"></button>
+              <p class="elements__text">Карачаево-Ч...</p>
+              <button type="button" class="elements__like-button"></button>
             </div>
           </li>
         </ul>
@@ -77,10 +76,10 @@
     <div class="popup popup_type_closed">
       <form action="#" class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__author">
-        <input type="text" class="popup__description">
-        <input type="submit" class="popup__submit" value="Сохранить">
-        <button class="popup__close"></button>
+        <input name="popupAuthor" type="text" class="popup__input">
+        <input name="popupDesc" type="text" class="popup__input">
+        <button type="submit" class="popup__submit">Сохранить</button>
+        <button type="button" class="popup__close"></button>
       </form>
     </div>
   </div>
