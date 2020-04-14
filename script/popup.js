@@ -1,31 +1,31 @@
 let popup = document.querySelector('.popup');
 const edit = document.querySelector('.profile__edit-button');
-const popup_button = document.querySelector('.popup__close');
+const popupButton = document.querySelector('.popup__close');
 let author = document.querySelector('.profile__title');
 let desc = document.querySelector('.profile__subtitle');
-let popup_author = document.querySelector('.popup__author');
-let popup_desc = document.querySelector('.popup__description');
+let popupAuthor = document.querySelector('input[name="popupAuthor"]');
+let popupDesc = document.querySelector('input[name="popupDesc"]');
 const form = document.querySelector('.popup__container');
 
-function popup_open() {
+function popupOpen() {
   popup.classList.remove('popup_type_closed');
-  popup_author.value = author.textContent;
-  popup_desc.value = desc.textContent;
+  popupAuthor.value = author.textContent;
+  popupDesc.value = desc.textContent;
 }
 
-function popup_close() {
+function popupClose() {
   popup.classList.add('popup_type_closed');
 }
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
 
-  author.textContent = popup_author.value;
-  desc.textContent = popup_desc.value;
+  author.textContent = popupAuthor.value;
+  desc.textContent = popupDesc.value;
 
-  popup_close();
+  popupClose();
 }
 
 form.addEventListener('submit', formSubmitHandler);
-edit.addEventListener('click', popup_open);
-popup_button.addEventListener('click', popup_close);
+edit.addEventListener('click', popupOpen);
+popupButton.addEventListener('click', popupClose);
