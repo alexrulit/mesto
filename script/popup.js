@@ -43,6 +43,16 @@ const initialCards = [
   }
 ];
 
+function popupOpen(popup) {
+  popup.classList.remove('popup_type_closed');
+  popup.classList.add('popup_type_opened');
+}
+
+function popupClose(popup) {
+  popup.classList.remove('popup_type_opened');
+  popup.classList.add('popup_type_closed');
+}
+
 function addCard(name, link, position) {
   const cardTemplate = document.querySelector('#fotoCard').content;
   const cardList = document.querySelector('.elements__list');
@@ -53,6 +63,7 @@ function addCard(name, link, position) {
   cardItem.querySelector('.elements__text').textContent = name;
   cardItem.querySelector('.elements__image').addEventListener('click', function(){
     popupImageLink.src = link;
+    popupImageLink.alt = name;
     popupImageCaption.textContent = name;
     popupOpen(popupImageView);
   });
@@ -75,16 +86,6 @@ function renderCards(cards) {
   });
 }
 
-function popupOpen(popup) {
-  popup.classList.remove('popup_type_closed');
-  popup.classList.add('popup_type_opened');
-}
-
-function popupClose(popup) {
-  popup.classList.remove('popup_type_opened');
-  popup.classList.add('popup_type_closed');
-}
-
 function authorEdit() {
   popupAuthor.value = author.textContent;
   popupDesc.value = desc.textContent;
@@ -102,7 +103,9 @@ function formSubmitProfile (evt) {
 
 function formSubmitAddCard (evt) {
   evt.preventDefault();
+
   addCard(cardName.value, cardLink.value, 'prepend');
+
   popupClose(popupAddCard);
 }
 
