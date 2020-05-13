@@ -3,6 +3,9 @@
 ## Описание
 Проектная работа 4. Codename: JS_Bug
 
+## GH PAGES
+https://alexrulit.github.io/mesto/
+
 ## Функциональность
 Изменение данных на странице с помощью POPUP формы.
 
