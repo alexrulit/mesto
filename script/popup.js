@@ -61,6 +61,7 @@ function addCard(name, link, position) {
   cardItem.querySelector('.elements__image').src = link;
   cardItem.querySelector('.elements__image').alt = name;
   cardItem.querySelector('.elements__text').textContent = name;
+
   cardItem.querySelector('.elements__image').addEventListener('click', function(){
     popupImageLink.src = link;
     popupImageLink.alt = name;
@@ -73,10 +74,12 @@ function addCard(name, link, position) {
     const listCard = rmButton.closest('.elements__item');
     listCard.remove();
   });
+
   cardItem.querySelector('.elements__like-button').addEventListener('click', function(evt){
     let likeButton = evt.target;
     likeButton.classList.toggle('elements__like-button_active');
   });
+
   position === 'prepend' ? cardList.prepend(cardItem) : cardList.append(cardItem);
 }
 
