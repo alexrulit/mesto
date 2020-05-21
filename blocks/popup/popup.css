@@ -6,6 +6,10 @@
 @import url(./__figure/popup__figure.css);
 @import url(./__img/popup__img.css);
 @import url(./__figcaption/popup__figcaption.css);
+@import url(./__input/_type/popup__input_type_error.css);
+@import url(./__input-error/popup__input-error.css);
+@import url(./__input-error/_active/popup__input-error_active.css);
+@import url(./__submit/_inactive/popup__submit_inactive.css);
 
 .popup {
   position: fixed;

@@ -42,19 +42,23 @@
       </li>
     </template>
     <div class="popup popup_type_profile">
-      <form action="#" class="popup__container">
+      <form action="#" class="popup__container" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input name="popupAuthor" type="text" class="popup__input">
-        <input name="popupDesc" type="text" class="popup__input">
+        <input id="popupAuthor" name="popupAuthor" type="text" class="popup__input" minlength="2" maxlength="40" required pattern="[А-Яа-яA-Za-z -]{1,}">
+        <span id="popupAuthor-error" class="popup__input-error"></span>
+        <input id="popupDesc" name="popupDesc" type="text" class="popup__input" minlength="2" maxlength="200" required>
+        <span id="popupDesc-error" class="popup__input-error"></span>
         <button type="submit" class="popup__submit">Сохранить</button>
         <button type="button" class="popup__close"></button>
       </form>
     </div>
     <div class="popup popup_type_addcard">
-      <form action="#" class="popup__container">
+      <form action="#" class="popup__container" novalidate>
         <h2 class="popup__title">Новое место</h2>
-        <input name="popupName" type="text" class="popup__input" placeholder="Название">
-        <input name="popupLink" type="text" class="popup__input" placeholder="Ссылка на картинку">
+        <input id="popupName" name="popupName" type="text" class="popup__input" placeholder="Название" minlength="1" maxlength="30" required>
+        <span id="popupName-error" class="popup__input-error"></span>
+        <input id="popupLink" name="popupLink" type="url" class="popup__input" placeholder="Ссылка на картинку" required>
+        <span id="popupLink-error" class="popup__input-error"></span>
         <button type="submit" class="popup__submit">Сохранить</button>
         <button type="button" class="popup__close"></button>
       </form>
@@ -68,5 +72,6 @@
     </div>
   </div>
 <script src="./script/popup.js"></script>
+<script src="./script/validate.js"></script>
 </body>
 </html>
