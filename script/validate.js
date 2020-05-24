@@ -1,16 +1,11 @@
-const inputError = (params, formElement, inputElement, errorMessage, action) => {
+const inputError = (params, formElement, inputElement) => {
 
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
-  if(!action) {
-    inputElement.classList.add(params.inputErrorClass);
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add(params.errorClass);
-  } else {
-    inputElement.classList.remove(params.inputErrorClass);
-    errorElement.classList.remove(params.errorClass);
-    errorElement.textContent = '';
-  }
+  inputElement.classList.toggle(params.inputErrorClass, !inputElement.validity.valid);
+  errorElement.textContent = inputElement.validationMessage;
+  errorElement.classList.toggle(params.errorClass, !inputElement.validity.valid);
+
 };
 
 const hasInvalidInput = (inputsList) => {
@@ -30,38 +25,39 @@ const toggleButtonState = (params, inputsList, buttonElement) => {
 
 const setEventListeners = (params, formElement, inactiveDefault) => {
 
-  const inputsList = Array.from(formElement.querySelectorAll(params.inputSelector));
+  const inputElements = Array.from(formElement.querySelectorAll(params.inputSelector));
 
   const buttonElement = formElement.querySelector(params.submitButtonSelector);
 
   if(inactiveDefault) {
-    toggleButtonState(params, inputsList, buttonElement);
+    toggleButtonState(params, inputElements, buttonElement);
   }
 
-  inputsList.forEach((inputElement) => {
+  inputElements.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      inputError(params, formElement, inputElement, inputElement.validationMessage, inputElement.validity.valid);
-      toggleButtonState(params, inputsList, buttonElement);
+      inputError(params, formElement, inputElement);
+      toggleButtonState(params, inputElements, buttonElement);
     });
+  });
+};
+
+const validateForm = (params, popupElement) => {
+  const formElement = popupElement.querySelector(params.formSelector);
+  const inputElements = Array.from(formElement.querySelectorAll(params.inputSelector));
+  const buttonElement = formElement.querySelector(params.submitButtonSelector);
+
+  inputElements.forEach((inputElement) => {
+    inputError(params, formElement, inputElement);
+    toggleButtonState(params, inputElements, buttonElement);
   });
 };
 
 const enableValidation = (params) => {
 
-  const formsList = Array.from(document.querySelectorAll(params.formSelector));
+  const formElements = Array.from(document.querySelectorAll(params.formSelector));
 
-  formsList.forEach((formElement) => {
+  formElements.forEach((formElement) => {
       setEventListeners(params, formElement, formElement.closest(params.formParentSelector).classList.contains(params.formInactiveDefault));
   });
 };
 
-enableValidation({
-  formSelector: '.popup__container',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_inactive',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active',
-  formParentSelector: '.popup',
-  formInactiveDefault: 'popup_type_addcard'
-});

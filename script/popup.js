@@ -20,6 +20,16 @@ const formAddCard = popupAddCard.querySelector('.popup__container');
 const cardTemplate = document.querySelector('#fotoCard').content;
 const cardList = document.querySelector('.elements__list');
 const escapeName = 'Escape';
+const params = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active',
+  formParentSelector: '.popup',
+  formInactiveDefault: 'popup_type_addcard'
+};
 const initialCards = [
   {
       name: 'Архыз',
@@ -120,6 +130,7 @@ const renderCards = (cards) => {
 const authorEdit = () => {
   popupAuthor.value = author.textContent;
   popupDesc.value = desc.textContent;
+  validateForm(params, popupProfile);
   popup(popupProfile, true);
 }
 
@@ -130,6 +141,7 @@ const formSubmitProfile = (evt) => {
   desc.textContent = popupDesc.value;
 
   popup(popupProfile, false);
+  validateForm(params, popupAddCard);
 }
 
 const formSubmitAddCard = (evt) => {
@@ -140,6 +152,7 @@ const formSubmitAddCard = (evt) => {
   popup(popupAddCard, false);
 }
 
+enableValidation(params);
 renderCards(initialCards);
 formProfile.addEventListener('submit', formSubmitProfile);
 formAddCard.addEventListener('submit', formSubmitAddCard);
