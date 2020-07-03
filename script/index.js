@@ -17,7 +17,7 @@ const cardName = document.querySelector('input[name="popupName"]');
 const cardLink = document.querySelector('input[name="popupLink"]');
 const formProfile = popupProfile.querySelector('.popup__container');
 const formAddCard = popupAddCard.querySelector('.popup__container');
-const cardTemplate = document.querySelector('#fotoCard').content;
+const cardTplSelector = '#fotoCard';
 const cardList = document.querySelector('.elements__list');
 const escapeName = 'Escape';
 const params = {
@@ -57,6 +57,11 @@ const initialCards = [
   }
 ];
 
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
+
+
 
 
 const popup = (popup, action) => {
@@ -86,44 +91,23 @@ const escKey = (evt) => {
     });
 }
 
-const imageView = (name, link) => {
-  popupImageLink.src = link;
-  popupImageLink.alt = name;
-  popupImageCaption.textContent = name;
+export const imageView = (evt) => {
+  const image = evt.target;
+  popupImageLink.src = image.src;
+  popupImageLink.alt = image.alt;
+  popupImageCaption.textContent = image.alt;
   popup(popupImageView, true);
 }
 
-const deleteCard = (evt) => {
-  const rmButton = evt.target;
-  const listCard = rmButton.closest('.elements__item');
-  listCard.remove();
-}
 
-const like = (evt) => {
-  const likeButton = evt.target;
-  likeButton.classList.toggle('elements__like-button_active');
-}
-
-const makeCardElement = (name, link) => {
-  const cardItem = cardTemplate.cloneNode(true);
-  const cardImage = cardItem.querySelector('.elements__image');
-  const cardName = cardItem.querySelector('.elements__text');
-  const cardLikeButton = cardItem.querySelector('.elements__like-button');
-  const cardDeleteButton = cardItem.querySelector('.elements__delete-button');
-
-  cardImage.src = link;
-  cardImage.alt = name;
-  cardName.textContent = name;
-  cardImage.addEventListener('click', function(){ imageView(name, link) });
-  cardDeleteButton.addEventListener('click', deleteCard);
-  cardLikeButton.addEventListener('click', like);
-
-  return cardItem;
+const newCard = (item) => {
+  const card = new Card(item, cardTplSelector);
+  return card.renderCard();
 }
 
 const renderCards = (cards) => {
   cards.forEach(item => {
-    cardList.append(makeCardElement(item.name, item.link));
+    cardList.append(newCard(item));
   });
 }
 
@@ -147,12 +131,26 @@ const formSubmitProfile = (evt) => {
 const formSubmitAddCard = (evt) => {
   evt.preventDefault();
 
-  cardList.prepend(makeCardElement(cardName.value, cardLink.value));
+  const card = [];
+  card.name = cardName.value;
+  card.link = cardLink.value;
+
+  cardList.prepend(newCard(card));
 
   popup(popupAddCard, false);
 }
 
-enableValidation(params);
+const setValidation = (params) => {
+
+  const formElements = Array.from(document.querySelectorAll(params.formSelector));
+
+  formElements.forEach((formElement) => {
+      const formValid = new FormValidator(params, formElement);
+      formValid.enableValidation();
+  });
+};
+
+setValidation(params);
 renderCards(initialCards);
 formProfile.addEventListener('submit', formSubmitProfile);
 formAddCard.addEventListener('submit', formSubmitAddCard);
