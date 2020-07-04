@@ -3,7 +3,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-block-size: 75vw;
+  max-width: 75vw;
   max-height: 75vh;
   margin: 0;
 }
