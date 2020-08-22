@@ -18,15 +18,12 @@ export default class PopupWithForm extends Popup {
   }
 
   close() {
-    this._popupElement.classList.remove('popup_opened');
-    document.removeEventListener('keydown', this._handleEscClose);
-    document.removeEventListener('click', this._handleOverlayClose);
+    super.close();
     this._popupElement.querySelector('.popup__container').reset();
   }
 
   setEventListeners() {
-    this._popupCloseButton = this._popupElement.querySelector('.popup__close');
-    this._popupCloseButton.addEventListener('click', this.close);
+    super.setEventListeners();
     this._popupElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
 
