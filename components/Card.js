@@ -1,10 +1,9 @@
-import { viewImage } from './index.js';
-
 export default class Card {
-  constructor(cardElements, templateSelector) {
+  constructor(cardElements, templateSelector, handleCardClick) {
     this._cardTemplate = document.querySelector(templateSelector).content;
     this._cardName = cardElements.name;
     this._cardImgUrl = cardElements.link;
+    this._handleCardClick = handleCardClick;
   }
 
   _deleteCard(evt) {
@@ -33,7 +32,7 @@ export default class Card {
   }
 
   _setCardListeners() {
-    this._cardTplImage.addEventListener('click', viewImage);
+    this._cardTplImage.addEventListener('click', this._handleCardClick);
     this._cardTplDeleteButton.addEventListener('click', this._deleteCard);
     this._cardTplLikeButton.addEventListener('click', this._like);
   }
