@@ -1,3 +1,4 @@
+import '../pages/index.css';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -113,5 +114,5 @@ const setValidation = (params) => {
 
 setValidation(validationParams);
 profileEditButton.addEventListener('click', editAuthor);
-addCardButton.addEventListener('click', popupAddCard.open);
+addCardButton.addEventListener('click', () => { popupAddCard.open(); });
 

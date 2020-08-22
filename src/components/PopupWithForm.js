@@ -6,7 +6,7 @@ export default class PopupWithForm extends Popup {
     this._submitHandler = submitHandler;
   }
 
-  _getInputValues = () => {
+  _getInputValues() {
     this._inputList = this._popupElement.querySelectorAll('.popup__input');
     this._formValues = {};
 
@@ -17,14 +17,14 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
-  close = () => {
+  close() {
     this._popupElement.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEscClose);
     document.removeEventListener('click', this._handleOverlayClose);
     this._popupElement.querySelector('.popup__container').reset();
   }
 
-  setEventListeners = () => {
+  setEventListeners() {
     this._popupCloseButton = this._popupElement.querySelector('.popup__close');
     this._popupCloseButton.addEventListener('click', this.close);
     this._popupElement.addEventListener('submit', (evt) => {
