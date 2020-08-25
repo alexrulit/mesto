@@ -1,0 +1,24 @@
+.profile__avatar-link {
+  position: relative;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile__avatar-link::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.profile__avatar-link:hover:before {
+  background: rgba(0, 0, 0, .8);
+  transition: background .4s ease-out;
+  background-image: url('../../../images/avatar-edit.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+}

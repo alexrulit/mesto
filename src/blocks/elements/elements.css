@@ -5,6 +5,7 @@
 @import url(./__text/elements__text.css);
 @import url(./__like-button/elements__like-button.css);
 @import url(./__like-button/_active/elements__like-button_active.css);
+@import url(./__like-count/elements__like-count.css);
 @import url(./__delete-button/elements__delete-button.css);
 
 .elements {
