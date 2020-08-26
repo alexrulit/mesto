@@ -5,10 +5,12 @@ export default class PopupWithImage extends Popup {
     super(popupSelector);
   }
 
-  open(evt) {
-    this._popupElement.querySelector('.popup__img').src = evt.target.src;
-    this._popupElement.querySelector('.popup__img').alt = evt.target.alt;
-    this._popupElement.querySelector('.popup__figcaption').textContent = evt.target.alt;
+  open(src, alt) {
+    this._popupImage = this._popupElement.querySelector('.popup__img');
+    this._popupFigure = this._popupElement.querySelector('.popup__figcaption');
+    this._popupImage.src = src;
+    this._popupImage.alt = alt;
+    this._popupFigure.textContent = alt;
     super.open();
   }
 }

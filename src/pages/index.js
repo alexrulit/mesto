@@ -4,6 +4,7 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupConfirm from '../components/PopupConfirm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
@@ -72,14 +73,14 @@ api.getUserInfo()
     console.log(err);
   });
 
-const viewImage = (evt) => {
-  const imagePopup = new PopupWithImage(mainParams.popupImageSelector);
-  imagePopup.open(evt);
-  imagePopup.setEventListeners();
+const imagePopup = new PopupWithImage(mainParams.popupImageSelector);
+imagePopup.setEventListeners();
+
+const viewImage = (cardImage) => {
+  imagePopup.open(cardImage.src, cardImage.alt);
 }
 
-const cardLike = (evt, cardId) => {
-  const likeButton = evt.target;
+const cardLike = (likeButton, cardId) => {
   const state = likeButton.classList.contains('elements__like-button_active');
   api.cardLike(cardId, state)
     .then(result => {
@@ -91,32 +92,38 @@ const cardLike = (evt, cardId) => {
     });
 }
 
-const cardDelete = (evt, cardId) => {
-  const popupDeleteCard = new PopupWithForm(mainParams.popupDeleteSelector,{
-    submitHandler: () => {
-      const deleteButton = evt.target;
-      const deleteCardElement = deleteButton.closest('.elements__item');
-      api.deleteCard(cardId)
-        .then(() => {
-          deleteCardElement.remove();
-          popupDeleteCard.close();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  });
-  popupDeleteCard.setEventListeners();
-  popupDeleteCard.open();
+const popupDeleteCard = new PopupConfirm(mainParams.popupDeleteSelector, {
+  submitHandler: (cardItem, cardId) => {
+    api.deleteCard(cardId)
+      .then(() => {
+        cardItem.remove();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupDeleteCard.close();
+      });
+  }
+});
+popupDeleteCard.setEventListeners();
+
+const cardDelete = (deleteButton, cardId) => {
+  const deleteCardElement = deleteButton.closest('.elements__item');
+  popupDeleteCard.open(deleteCardElement, cardId);
+}
+
+const newCard = (cardItem, tplSelector, viewImage, cardLike, cardDelete, userId) => {
+  const card = new Card(cardItem, tplSelector, viewImage, cardLike, cardDelete, userId);
+  const cardElement = card.renderCard();
+  return cardElement;
 }
 
 const renderInitialCards = (initialCards, userId) => {
   cardsList = new Section({
     items: initialCards,
     renderer: (cardItem) => {
-      const card = new Card(cardItem, mainParams.cardTplSelector, viewImage, cardLike, cardDelete, userId);
-      const cardElement = card.renderCard();
-      cardsList.setItem(cardElement);
+      cardsList.setItem(newCard(cardItem, mainParams.cardTplSelector, viewImage, cardLike, cardDelete, userId));
     }
   }, mainParams.cardListSection);
 
@@ -148,9 +155,7 @@ const popupAddCard = new PopupWithForm(mainParams.popupAddCardSelector, {
       requestLoading(true, popupAddCard);
       api.addNewCard(item.name, item.link)
       .then(result => {
-        const newCard = new Card(result, mainParams.cardTplSelector, viewImage, cardLike, cardDelete, userInfo.getUserId());
-        const newCardElement = newCard.renderCard();
-        cardsList.setPrependItem(newCardElement);
+        cardsList.setPrependItem(newCard(result, mainParams.cardTplSelector, viewImage, cardLike, cardDelete, userInfo.getUserId()));
       })
       .catch((err) => {
         console.log(err);

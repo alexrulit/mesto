@@ -7,6 +7,8 @@ export default class Popup {
     this.close = this.close.bind(this);
     this._handleEscClose = this._handleEscClose.bind(this);
     this._handleOverlayClose = this._handleOverlayClose.bind(this);
+    this._popupSubmitButton = this._popupElement.querySelector('.popup__submit');
+    this._popupCloseButton = this._popupElement.querySelector('.popup__close');
   }
 
   open() {
@@ -34,12 +36,10 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._popupCloseButton = this._popupElement.querySelector('.popup__close');
     this._popupCloseButton.addEventListener('click', this.close);
   }
 
   setButtonText(text, isActive) {
-    this._popupSubmitButton = this._popupElement.querySelector('.popup__submit');
     this._popupSubmitButton.textContent = text;
     this._popupSubmitButton.disabled = isActive;
   }

@@ -29,9 +29,9 @@ export default class Card {
   }
 
   _setCardListeners() {
-    this._cardTplImage.addEventListener('click', this._handleCardClick);
-    this._cardTplDeleteButton.addEventListener('click', (evt) => { this._handleCardDelete(evt, this._cardId); });
-    this._cardTplLikeButton.addEventListener('click', (evt) => { this._handleCardLike(evt, this._cardId); });
+    this._cardTplImage.addEventListener('click', () => { this._handleCardClick(this._cardTplImage); });
+    this._cardTplDeleteButton.addEventListener('click', () => { this._handleCardDelete(this._cardTplDeleteButton, this._cardId); });
+    this._cardTplLikeButton.addEventListener('click', () => { this._handleCardLike(this._cardTplLikeButton, this._cardId); });
   }
 
   _checkIsLiked() {

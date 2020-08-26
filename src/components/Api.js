@@ -6,21 +6,18 @@ export default class Api {
   }
 
   _sendRequest(endpoint, method, body){
-    this._endpoint = endpoint;
-    this._method = method;
     this._headers = {
         authorization: this._token,
         'Content-type': this._contentType
     };
-    this._body = body;
     this._requestInit = {
-      method: this._method,
+      method: method,
       headers: this._headers
     };
-    if(this._method === 'POST' || this._method === 'PATCH'){
-      this._requestInit.body = this._body;
+    if(method === 'POST' || method === 'PATCH'){
+      this._requestInit.body = body;
     }
-    return fetch(this._baseUrl + this._endpoint, this._requestInit)
+    return fetch(this._baseUrl + endpoint, this._requestInit)
     .then(res => {
       if (res.ok) {
         return res.json();
@@ -55,11 +52,7 @@ export default class Api {
 
   cardLike(cardId, state) {
     this._cardId = cardId;
-    if(state){
-      this._method = 'DELETE';
-    } else {
-      this._method = 'PUT';
-    }
+    state ? this._method = 'DELETE' : this._method = 'PUT';
     return this._sendRequest('/cards/likes/' + this._cardId, this._method, {});
   }
 
